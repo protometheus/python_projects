@@ -8,9 +8,9 @@ from django.db.models import Q
 # TableManager contains functionality for interacting with Tables
 class TableManager:
     @classmethod
-    def create_table(cls, name, schema_name):
-        # validate_name(name)
-        # validate_schema(schema_name)
+    def create_table(cls, name=None, schema_name=None):
+        # validate_name(name) if name == None: return None/err
+        # validate_schema(schema_name) if schema_name == None: return None/err
         t = Table(name=name, schema_name=schema_name)
         t.save()
         return t
@@ -42,12 +42,12 @@ class TableSearchManager:
 
         # if we are searching on a question, split the question
         # then search on its component parts
-        # Note: could also use icontains
-        if question:
+        # Note: could also use iexact with keyword approach
+        if question is not None:
             question_parts = question.split()
 
             qs = qs.filter(
-                reduce(operator.or_, (Q(view__question__question_text__iexact=x) for x in question_parts))
+                reduce(operator.or_, (Q(view__question__question_text__icontains=x) for x in question_parts))
             )
 
         return qs
