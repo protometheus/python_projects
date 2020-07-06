@@ -23,7 +23,7 @@ class TableManager:
         return qs
 
 
-# QuestionManager contains functionality for interacting with Tables
+# QuestionManager contains functionality for interacting with Questions
 class QuestionManager:
     @classmethod
     def get_questions(cls, ordering='created_at', limit=100):
@@ -33,7 +33,7 @@ class QuestionManager:
         return qs
 
 
-# TableSearchManager contains functionality for searching tables.
+# TableSearchManager contains functionality for searching Tables by Question.
 class TableSearchManager:
     @classmethod
     def search_tables(cls, question=None):
