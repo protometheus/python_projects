@@ -1,11 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-
-
-# Sanity Check
 from django.core import serializers
 from rest_framework.decorators import api_view
-
 from posts.managers import BookManager, StoreManager
 
 
