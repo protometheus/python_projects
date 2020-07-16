@@ -15,7 +15,7 @@ class BookManager:
         return qs
 
     @classmethod
-    def get_book(cls, book_id,incl_publisher=False):
+    def get_book(cls, book_id, incl_publisher=False):
         qs = Book.objects
 
         # check if prefetch is required
