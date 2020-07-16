@@ -1,6 +1,6 @@
-from posts.models import Book
+from posts.models import Book, Store
 
-
+# Book service methods
 class BookManager:
 
     @classmethod
@@ -24,3 +24,19 @@ class BookManager:
 
         qs = qs.get(book_id)
         return qs
+
+
+# Store service methods
+class StoreManager:
+
+    @classmethod
+    def store_list(cls):
+        qs = Store.objects.prefetch_related('books')
+
+        stores = []
+
+        for store in qs:
+            books = [book.name for book in store.books.all()]
+            stores.append({'id': store.id, 'name': store.name, 'books': books})
+
+        return stores
